@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://b81pfjdlru5jc"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_bpxrm"]
+[ext_resource type="PackedScene" uid="uid://bir4eakj6q6hf" path="res://hitboxhurtbox/hit_box.tscn" id="2_5eiig"]
+[ext_resource type="PackedScene" uid="uid://bv13h7bamhfya" path="res://hitboxhurtbox/hurt_box.tscn" id="3_s4bkt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8c038"]
+size = Vector2(9, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q6lip"]
+radius = 7.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4fh6"]
+size = Vector2(11, 12)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t0agm"]
+load_path = "res://.godot/imported/HalflingAssassin.png-da336dd57e541cb7a919d12a4eaba945.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erfgj"]
+atlas = SubResource("CompressedTexture2D_t0agm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7wb8"]
+atlas = SubResource("CompressedTexture2D_t0agm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br3eo"]
+atlas = SubResource("CompressedTexture2D_t0agm")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01r6b"]
+atlas = SubResource("CompressedTexture2D_t0agm")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmw1d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erfgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7wb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br3eo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01r6b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_bpxrm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_8c038")
+
+[node name="HitBox" parent="." instance=ExtResource("2_5eiig")]
+position = Vector2(0, 2)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_q6lip")
+debug_color = Color(0.999986, 0, 0.0937567, 0.42)
+
+[node name="HurtBox" parent="." instance=ExtResource("3_s4bkt")]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_j4fh6")
+debug_color = Color(0.765677, 0.448251, 5.77569e-07, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pmw1d")
+frame = 2
+frame_progress = 0.283238
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="HitBox"]
+[editable path="HurtBox"]
