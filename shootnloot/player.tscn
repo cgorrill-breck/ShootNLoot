@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://yg76qf1apigq"]
+[gd_scene load_steps=27 format=3 uid="uid://yg76qf1apigq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_bsaxr"]
+[ext_resource type="Script" path="res://resources/stats/player_stats.gd" id="2_35ceu"]
 [ext_resource type="PackedScene" uid="uid://bir4eakj6q6hf" path="res://hitboxhurtbox/hit_box.tscn" id="2_dqse3"]
 [ext_resource type="PackedScene" uid="uid://bv13h7bamhfya" path="res://hitboxhurtbox/hurt_box.tscn" id="3_l50ui"]
 [ext_resource type="Texture2D" uid="uid://b0e1goi0gnfqk" path="res://assets/Idle/idle_left_down.png" id="4_dhsmb"]
@@ -152,6 +153,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_bsaxr")
+stats = ExtResource("2_35ceu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 2)
@@ -179,7 +181,7 @@ debug_color = Color(0.678691, 0.655874, 0, 0.42)
 sprite_frames = SubResource("SpriteFrames_efx5f")
 animation = &"idle_down_right"
 autoplay = "idle_down_right"
-frame_progress = 0.913876
+frame_progress = 0.810074
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
