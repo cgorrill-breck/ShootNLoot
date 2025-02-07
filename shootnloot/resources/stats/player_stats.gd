@@ -1,14 +1,14 @@
 class_name Player_Stats
-extends Resource
-
+extends Node
+const BASE_SPEED = 60
 # Exported properties
 @export var _health: int = 10
 @export var _defense: int = 10
 @export var _attack_power: int = 10
-@export var _move_speed: int = 60
+@export var _move_speed: int = BASE_SPEED
 @export var _level: int = 1
 @export var _experience: int = 0
-@export var _accelleration : float = _move_speed / 4
+@export var _acceleration : float = _move_speed / 4
 
 # Getters
 func get_health() -> int:
@@ -23,8 +23,8 @@ func get_attack_power() -> int:
 func get_move_speed() -> int:
 	return _move_speed
 
-func get_accelleration() -> float:
-	return _accelleration
+func get_acceleration() -> float:
+	return _acceleration
 
 func get_level() -> int:
 	return _level
@@ -45,8 +45,8 @@ func set_attack_power(value: int) -> void:
 func set_move_speed(value: int) -> void:
 	_move_speed = max(value, 0)
 	
-func set_accelleration(value: float) -> void:
-	_accelleration = max(value, 0)
+func set_acceleration(value: float) -> void:
+	_acceleration = max(value, 0)
 
 func set_level(value: int) -> void:
 	_level = max(value, 1) # Ensure level is at least 1
