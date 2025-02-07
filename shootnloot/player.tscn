@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=3 uid="uid://yg76qf1apigq"]
+[gd_scene load_steps=185 format=3 uid="uid://yg76qf1apigq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_bsaxr"]
 [ext_resource type="PackedScene" uid="uid://bir4eakj6q6hf" path="res://hitboxhurtbox/hit_box.tscn" id="2_dqse3"]
@@ -21,6 +21,13 @@
 [ext_resource type="Texture2D" uid="uid://cac6uplga04or" path="res://assets/Walk/walk_up.png" id="19_ljn6f"]
 [ext_resource type="Texture2D" uid="uid://cl6anqollpax3" path="res://assets/Walk/walk_left_up.png" id="20_6pu5e"]
 [ext_resource type="Texture2D" uid="uid://creui8k5ih4mj" path="res://assets/Walk/walk_right_up.png" id="21_hfc8a"]
+[ext_resource type="Script" path="res://states/state_machine.gd" id="22_bwbmf"]
+[ext_resource type="Script" path="res://states/idle_state.gd" id="23_bqdho"]
+[ext_resource type="Script" path="res://run_state.gd" id="24_7jhs7"]
+[ext_resource type="Script" path="res://states/boost_state.gd" id="25_oa84d"]
+[ext_resource type="Script" path="res://states/attack_state.gd" id="26_shp0e"]
+[ext_resource type="Script" path="res://states/dash_state.gd" id="27_a4de8"]
+[ext_resource type="Script" path="res://states/death_state.gd" id="28_jeypu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhkl7"]
 size = Vector2(7, 12)
@@ -1225,6 +1232,27 @@ one_shot = true
 [node name="BoostCooldownTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="State_Machine" type="Node" parent="."]
+script = ExtResource("22_bwbmf")
+
+[node name="Idle_State" type="Node" parent="State_Machine"]
+script = ExtResource("23_bqdho")
+
+[node name="Run_State" type="Node" parent="State_Machine"]
+script = ExtResource("24_7jhs7")
+
+[node name="Boost_State" type="Node" parent="State_Machine"]
+script = ExtResource("25_oa84d")
+
+[node name="Attack_State" type="Node" parent="State_Machine"]
+script = ExtResource("26_shp0e")
+
+[node name="Dash_State" type="Node" parent="State_Machine"]
+script = ExtResource("27_a4de8")
+
+[node name="Death_State" type="Node" parent="State_Machine"]
+script = ExtResource("28_jeypu")
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="BoostTimer" to="." method="_on_boost_timer_timeout"]

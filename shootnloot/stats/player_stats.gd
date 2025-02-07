@@ -1,11 +1,11 @@
 class_name Player_Stats
 extends Node
-const BASE_SPEED = 60
+const BASE_SPEED := 100.0
 # Exported properties
 @export var _health: int = 10
 @export var _defense: int = 10
 @export var _attack_power: int = 10
-@export var _move_speed: int = BASE_SPEED
+@export var _move_speed: float = BASE_SPEED
 @export var _level: int = 1
 @export var _experience: int = 0
 @export var _acceleration : float = _move_speed / 4
@@ -20,7 +20,7 @@ func get_defense() -> int:
 func get_attack_power() -> int:
 	return _attack_power
 
-func get_move_speed() -> int:
+func get_move_speed() -> float:
 	return _move_speed
 
 func get_acceleration() -> float:
@@ -42,7 +42,7 @@ func set_defense(value: int) -> void:
 func set_attack_power(value: int) -> void:
 	_attack_power = max(value, 0)
 
-func set_move_speed(value: int) -> void:
+func set_move_speed(value: float) -> void:
 	_move_speed = max(value, 0)
 	
 func set_acceleration(value: float) -> void:
