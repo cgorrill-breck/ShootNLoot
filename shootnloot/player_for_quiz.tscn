@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://c31edr6v6tsgr"]
+
+[ext_resource type="Script" path="res://player_for_quiz.gd" id="1_po7rg"]
+[ext_resource type="Texture2D" uid="uid://xa86f17pcfxr" path="res://chibi-layered.png" id="2_3g4vc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gl57"]
+atlas = ExtResource("2_3g4vc")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtvbe"]
+atlas = ExtResource("2_3g4vc")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwotc"]
+atlas = ExtResource("2_3g4vc")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el37b"]
+atlas = ExtResource("2_3g4vc")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxlwc"]
+atlas = ExtResource("2_3g4vc")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fccrp"]
+atlas = ExtResource("2_3g4vc")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anceb"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gl57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtvbe")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwotc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el37b")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxlwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fccrp")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ktph"]
+size = Vector2(13, 15)
+
+[node name="PlayerForQuiz" type="CharacterBody2D"]
+script = ExtResource("1_po7rg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_anceb")
+animation = &"walk_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_3ktph")

@@ -1,11 +1,13 @@
 extends State
 class_name Run_State
-@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
-@onready var player: CharacterBody2D = $"../.."
+
 # Called when the node enters the scene tree for the first time.
 func enter():
-	handle_animation()
-	pass
+	var input_vector: Vector2
+	input_vector = Input.get_vector("left","right","up","down")
+	if input_vector == Vector2.ZERO:
+		state_machine.change_state("Idle_State")
+	
 
 func exit():
 	pass
@@ -16,6 +18,8 @@ func _physics_process(_delta):
 func update(_delta):
 	var input_vector: Vector2
 	input_vector = Input.get_vector("left","right","up","down")
+	if Input.is_action_just_pressed("dash"):
+		state_machine.change_state("Dash_State")
 	if input_vector == Vector2.ZERO:
 		state_machine.change_state("Idle_State")
 	handle_animation()

@@ -9,6 +9,7 @@ const BASE_SPEED := 100.0
 @export var _level: int = 1
 @export var _experience: int = 0
 @export var _acceleration : float = _move_speed / 4
+@export var _dash_distance : float = 150
 
 # Getters
 func get_health() -> int:
@@ -31,7 +32,9 @@ func get_level() -> int:
 
 func get_experience() -> int:
 	return _experience
-
+	
+func get_dash_distance() -> float:
+	return _dash_distance
 # Setters
 func set_health(value: int) -> void:
 	_health = max(value, 0) # Ensure health doesn't go negative
@@ -54,6 +57,9 @@ func set_level(value: int) -> void:
 func set_experience(value: int) -> void:
 	_experience = max(value, 0)
 
+func set_dash_distance(value : float) -> void:
+	_dash_distance = value
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
